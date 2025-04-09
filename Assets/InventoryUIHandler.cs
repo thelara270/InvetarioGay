@@ -22,11 +22,18 @@ public class InventoryUIHandler : MonoBehaviour
 
     int selectdItemId;
 
+    ItemFactory factory;
+
     private void Start()
     {
-        //ShowItems();
+        factory = gameObject.AddComponent<ItemFactory>();
+        factory.InitializeFactory(itemsDatabase);
+
         IntantiateButtons();
         SetInventory(inventory);
+
+        //factory.CreateItem(2,Vector3.zero,Quaternion.identity);
+        //ShowItems();
     }
 
     private void Update()
@@ -47,6 +54,10 @@ public class InventoryUIHandler : MonoBehaviour
        
         inventory.ItemUpdated += UpdatePreviewAmountText;
         inventory.ItemRemoved += HidePreviewPanel;
+    }
+    public void UpdatePreviewAmountText()
+    {
+        previewItemAmountText.text = inventory.Items[selectdItemId].ToString();
     }
 
     public void IntantiateButtons()
@@ -111,8 +122,10 @@ public class InventoryUIHandler : MonoBehaviour
         inventory.RemoveItem(selectdItemId, 1);
     }
 
-    public void UpdatePreviewAmountText()
+
+    public void DropInventoryItems()
     {
-        previewItemAmountText.text = inventory.Items[selectdItemId].ToString();
+        inventory.RemoveItem(selectdItemId, 1);
+        factory.CreateItem(selectdItemId,Vector3.zero,Quaternion.identity);
     }
 }

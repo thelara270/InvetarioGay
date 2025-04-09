@@ -15,6 +15,7 @@ MonoBehaviour:
   _id: 5
   _itemName: Chestplate
   _icon: {fileID: -1822484032, guid: 022ecd26b93bd684fab303d5fde4a587, type: 3}
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 7714488449267234804, guid: bc45b5b283285d146b4a8c9fa3e28b15, type: 3}
+  _itemType: 0
   _value: 10
   _type: 1
